@@ -1,6 +1,7 @@
 [build]
   functions = "functions"  # Specify the folder for serverless functions
   publish = "src/static"       # Specify the folder for static assets (if any)
+  command = "pip install -r requirements.txt"
 
 [[redirects]]
   from = "/"
