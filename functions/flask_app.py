@@ -1,4 +1,10 @@
-from src import app  # Import your Flask app
+import sys
+import os
+
+# Add the parent directory (where 'src' is located) to the Python path
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
+import app
 from aws_lambda_wsgi import response
 
 def handler(event, context):
