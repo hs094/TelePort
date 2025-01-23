@@ -2,7 +2,7 @@ from re import sub
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, IntegerField
 from wtforms.validators import DataRequired, Length, EqualTo, ValidationError, NumberRange
-from src.models import Consignment, Manager, Employee, Customer, Office, Truck
+from models import Consignment, Manager, Employee, Customer, Office, Truck
 class signUpManager(FlaskForm):
 
     Name = StringField(label = 'Name', validators=[DataRequired(), Length(min=2, max=30)])

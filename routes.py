@@ -1,10 +1,9 @@
-from src import app
+from app import app, db
 from flask import render_template, request
-from src.forms import loginEmployee, placeOrder, signUpManager, loginManager, signUpCustomer, \
+from forms import loginEmployee, placeOrder, signUpManager, loginManager, signUpCustomer, \
     loginCustomer, createEmployee, createOffice,addTruck, trackConsignment,viewBill, viewTruckStatus, branchConsignmentDetails
-from src.models import Consignment, Customer, Manager, Employee, Office, Truck
+from models import Consignment, Customer, Manager, Employee, Office, Truck
 import datetime
-from src import db
 from flask import Flask,flash, redirect, url_for,session
 from flask_login import login_user, logout_user
 from flask_session import Session
@@ -85,7 +84,6 @@ def login_manager():
             session['name'] = attempted_manager.name
             login_user(attempted_manager)
             flash(f'Success! You are logged in as: {attempted_manager.name}', category='success')
-            # print(attempted_manager.name)
             return redirect(url_for('manager_actions2'))
         else:
             flash('Invalid email or password! Please try again', category='danger')
@@ -217,7 +215,6 @@ def customer_actions():
         if form2.validate_on_submit():
             consignment = Consignment.query.filter_by(consignmentID = form2.consignmentID.data).first()
             session['consignment'] = consignment
-            # print(2)
             # return render_template('customer_actions.html', form1=form1, form2 = form2, show_modal = True)
             return redirect(url_for('track_consignment'))
         if form2.errors != {}:
@@ -346,8 +343,6 @@ def place_order():
 def allot_truck(sourceofficeID):
         
     sourceoffice = Office.query.filter_by(officeID = sourceofficeID).first()
-    print(sourceoffice.volume_map.keys())
-    print(sourceoffice.order_map.keys())
     # sourceoffice.volume_map.pop(3)
     # done = 0
     poplist = []
@@ -356,7 +351,6 @@ def allot_truck(sourceofficeID):
         
         if truck:
             if totalvolume>=500:
-                print(sourceoffice.order_map)
                 for orderid in sourceoffice.order_map[destinationid]:
                     order = Consignment.query.filter_by(consignmentID = orderid).first()
                     order.status = "delivered"
@@ -422,7 +416,6 @@ def track_consignment():
 @app.route('/view_branch_details', methods = ['GET', 'POST'])
 def view_branch_details():
     offices = Office.query.all()
-    print(len(offices))
     return render_template('view_branch_details.html', offices=offices)
 
 @app.route('/idle_waiting_time_consignment', methods = ['GET', 'POST'])
@@ -459,7 +452,6 @@ def idle_waiting_time_consignment():
 # ))
 #     fig.write_image("./src/static/images/new_plot.png")
     
-    print(idle_waiting_time)
     datedic = {}
     length = len(consignments)
     idle_waiting_time //= length
@@ -501,7 +493,6 @@ def idle_truck_waiting_time():
         idle_waiting_time += t.waitingTime
         total_consignments += t.numConsignments
         
-    # print(idle_waiting_time)
 #     fig = px.bar(x=truckS, y=avgTime,color_discrete_sequence =['red']*len(avgTime))
 #     fig.update_layout(dict(
 #   title='Truck Id vs Avg Truck Idle Time',

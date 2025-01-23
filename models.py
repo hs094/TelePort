@@ -1,9 +1,7 @@
 from copyreg import dispatch_table
 from email.policy import default
 # import queue
-from src import app, db
-from src import bcrypt
-from src import log_manage
+from app import app, db, bcrypt, log_manage
 from flask_login import UserMixin
 import datetime
 from sqlalchemy.sql import func
