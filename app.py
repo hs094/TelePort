@@ -35,4 +35,5 @@ freezer = Freezer(app)
 from routes import *
 
 if __name__ == '__main__':
-    freezer.freeze()
+    app.run(debug=True)
+    # freezer.freeze()
