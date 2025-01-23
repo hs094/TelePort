@@ -10,15 +10,24 @@ resources available
 ## Remote Usage
 To remotely use the codebase to host the website on your system, clone the repository on your system and do the Following Steps -
 
-1.  Change The Database URI line inside the Teleport Package located in __init__.py
+1.  Create a `.env` file according to the instructions:
+```yaml
+host=<host-of-psql-server>
+port=<port-of-psql-server>
+database=<psql-db-name>
+secret_key=<secret-key-for-bcrypt>
+user=<psql-db-user>
+pool_mode=<psql-pool-mode>
+password=<psql-password>
 
+```
 2.  Execute the Following line in the root folder to install all the requirements
 ```bash
 pip install -r requirements.txt
 ```
 3.  To Finally Run the Codebase, in the root directory, run the following command in the terminal
 ```python
-python run.py
+python app.py
 ```
 
 ## Tech Stack Used
@@ -32,16 +41,7 @@ Backend
 
     Flask
     SQLAlchemy 
-    Heroku
-
-## Development Team
-1.  [Kushaz Sehgal](https://github.com/kushazsehgal)
-
-2.  [Shivam Raj](https://github.com/Shivam751)
-
-3.  [Hardik Soni](https://github.com/iamhardikat11)
-
-
+    Render
 
 ## Screenshots
 1.  ![HomePage](./ScreenShots/HomePage.PNG)
