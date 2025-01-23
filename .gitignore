@@ -29,3 +29,4 @@ tele/
 .netlify
 env
 flask_session
+build
