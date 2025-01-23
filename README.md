@@ -2,7 +2,7 @@
 TelePort is a Online Delivery Management Software where a customer can 
 send,receive and track orders in a single place.
 ## Visit the Site
-The Webiste is Hosted on Heroku, you can view the website by clicking [here](https://tccs-teleport.herokuapp.com/) 
+The Webiste is Hosted on Render, you can view the website by clicking [here](https://teleport-g0vz.onrender.com/) 
 ## About the Website
 The Software computerizes any delivery company’s book keeping activities associated with its 
 operation with an efficient Truck Allotement and Dispatch Algorithm to ensure productivity.
