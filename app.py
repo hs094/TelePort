@@ -10,8 +10,6 @@ from flask_frozen import Freezer
 import os
 
 load_dotenv()
-app = Flask(__name__)
-
 HOST=os.getenv("host")
 PORT=os.getenv("port")
 DATABASE=os.getenv("database")
@@ -20,6 +18,7 @@ SECRET_KEY=os.getenv("secret_key")
 POOL_MODE=os.getenv("pool_mode")
 PASSWORD=os.getenv("password")
 
+app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config["SESSION_PERMANENT"] = False
@@ -35,5 +34,4 @@ freezer = Freezer(app)
 from routes import *
 
 if __name__ == '__main__':
-    # app.run(debug=True)
-    freezer.freeze()
+    app.run()
